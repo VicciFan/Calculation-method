@@ -1,0 +1,12 @@
+n = 10;
+k = 0:n;
+x = cos((2*k+1)*pi./(2*(n+1)));
+y = 1./(1 + x.^2);
+xx = [-0.95 -0.05 0.05 0.95];
+yy = 1./(1 + xx.^2);
+p = LagrInterp(x,y,xx);
+disp(yy);
+disp(p);
+figure(1);
+plot(xx,yy,xx,p,'ro');
+legend('f(x)','Pn(x)');

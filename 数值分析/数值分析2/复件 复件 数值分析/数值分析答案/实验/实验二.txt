@@ -1,0 +1,119 @@
+实验二：Gauss列主元消去法
+程序1：Gauss列主元消去法
+A=input('请输入线性方程组的增广矩阵A=');
+n=length(A)-1;
+x=zeros(n,1);
+aa=zeros(n,1);
+for j=1:n
+    for i=1:(n+1)
+        AA(j,i)=abs(A(j,i));
+    end
+end
+for k=1:(n-1)
+    for i=k:n
+        aa(i-(k-1))=AA(i,k);
+    end
+    for i=k:n
+        if AA(i,k)==max(aa)
+            break
+        end
+    end
+    if AA(i,k)==0
+        break
+        fprintf('方程组系数矩阵奇异\n');
+    else
+        for j=k:(n+1)
+            jh=A(i,j);
+            A(i,j)=A(k,j);
+            A(k,j)=jh;
+        end
+    end
+    fenzi=A(k,k);
+    for j=k:(n+1)
+        A(k,j)=A(k,j)/fenzi;
+    end
+    for p=(k+1):n
+        jj=A(p,k);
+        for j=k:(n+1)
+            A(p,j)=A(p,j)-jj*A(k,j);
+        end
+    end
+end
+if k==(n-1)
+    x(n)=A(n,(n+1))/A(n,n);
+    for i=(n-1):(-1):1
+        he=0;
+        for j=(i+1):n
+            he=he+A(i,j)*x(j);
+        end
+        x(i)=A(i,(n+1))-he;
+    end
+end
+x
+
+用Gauss列主元消去法解方程组：
+1．请输入线性方程组的增广矩阵A=[1e-008,2,3,1;-1,3.172,4.623,2;-2,1.072,5.643,3]
+x =
+     -0.4653
+     -0.0700
+      0.3800
+2．请输入线性方程组的增广矩阵A=[4,-2,4,10;-2,17,10,3;-4,10,9,-7];
+x =
+      2.9464
+      0.6071
+     -0.1429
+
+3．请输入线性方程组的增广矩阵A=[0.3e-020,1,0.7;1,1,0.9]
+x =
+      0.2000
+0.7000
+
+程序2：不选主元的高斯消去法
+A=input('请输入线性方程组的增广矩阵A=');
+n=length(A)-1;
+x=zeros(n,1);
+for k=1:(n-1)
+    if A(k,k)==0
+        break
+        fprintf('方程组不能用普通的高斯消去法解\n');
+    else
+        fenzi=A(k,k);
+        for j=k:(n+1)
+            A(k,j)=A(k,j)/fenzi;
+        end
+        for p=(k+1):n
+            jj=A(p,k);
+            for j=k:(n+1)
+                A(p,j)=A(p,j)-jj*A(k,j);
+            end
+        end
+        x(n)=A(n,(n+1))/A(n,n);
+        for i=(n-1):(-1):1
+            he=0;
+            for j=(i+1):n
+                he=he+A(i,j)*x(j);
+            end
+            x(i)=A(i,(n+1))-he;
+        end
+    end
+end
+x
+
+用不选主元的Gauss消去法解方程组：
+1．请输入线性方程组的增广矩阵A=[4,-2,4,10;-2,17,10,3;-4,10,9,-7];
+x =
+      2.9464
+      0.6071
+     -0.1429
+
+2．请输入线性方程组的增广矩阵A=[1e-008,2,3,1;-1,3.172,4.623,2;-2,1.072,5.643,3];
+x =
+     -0.4653
+     -0.0700
+0.3800
+
+3．请输入线性方程组的增广矩阵A=[0.3e-020,1,0.7;1,1,0.9]
+x =
+           0
+      0.7000
+

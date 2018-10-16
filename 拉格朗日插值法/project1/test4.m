@@ -1,0 +1,11 @@
+n = 5;
+x = -5:5/n:5;
+y = exp(x);
+xx = [-4.75 -0.25 0.25 4.75];
+yy = exp(xx);
+p = LagrInterp( x,y,xx );
+disp(yy);
+disp(p);
+figure(n);
+plot(xx,yy,xx,p,'ro');
+legend('f(x)','Pn(x)');

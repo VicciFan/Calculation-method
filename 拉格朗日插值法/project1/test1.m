@@ -1,0 +1,12 @@
+n = 5;
+h = 10.0/n;
+x = -5:h:5;
+y = 1./( 1 + x.^2 );
+xx = [0.75 1.75 2.75 3.75 4.75];
+yy = 1./( 1 + xx.^2 );
+p = LagrInterp(x,y,xx);
+figure(1);
+plot(xx,yy,xx,p,'r');
+legend('f(x)','Pn(x)');
+%dlmwrite('f(x).txt',yy);
+%dlmwrite('P(x).txt',p);

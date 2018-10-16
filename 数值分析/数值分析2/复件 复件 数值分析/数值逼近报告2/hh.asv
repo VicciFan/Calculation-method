@@ -1,0 +1,25 @@
+function [hh]=hh(x,y,xx)
+i=1;
+n=length(x),
+A=zeros(n+1);
+u=zeros(n,1);
+h=zeros(n,1);
+r=zeros(n,1);
+D=zeros(n,1);
+while i<n+1
+    h(i)=x(i+1)-x(i);
+    u(i)=h(i)/(h(i)+h(i+1));
+    r(i)=1-u(i);
+    d(i)=6(f(x(i),x(i+1),x(i+2)));
+    A(i+1,i)=u(i);
+    A(i+1,i+2)=r(i);
+    D(i)=d(i);
+    A(i,i)=2;
+    if i<n-1
+    A(i,i+1)=1;
+    end
+    if i==n
+        A(i)
+    end 
+    i=i+1;
+end
